@@ -3,22 +3,24 @@ package version
 import (
 	"bytes"
 	"log"
+	"os"
 	"os/exec"
-	"strconv"
 	"strings"
+	"time"
 )
 
 // Version holds version info from ´git describe´
 var Version struct {
 	Long    string
-	Commits int
 	Tags    string
 	Git     string
 	Dirty   bool
+	ModTime time.Time
 }
 
 func init() {
 	version()
+	modTime()
 }
 
 // Long version from Git
@@ -59,11 +61,17 @@ func version() {
 		vers = vers[0 : l-1]
 
 		if len(vers) == 2 {
+			Version.Tags = vers[1]
+		} else {
 			Version.Tags = vers[0]
-			vers = vers[1:]
-		}
-		if Version.Commits, err = strconv.Atoi(vers[0]); err != nil {
-			log.Printf("Version : Error: %s", err.Error())
 		}
 	}
+}
+
+func modTime() {
+	fi, err := os.Stat(".git/COMMIT_EDITMSG")
+	if err != nil {
+		log.Printf("Version : Error: %s", err.Error())
+	}
+	Version.ModTime = fi.ModTime()
 }
