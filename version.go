@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// Version holds version info from git describe
+// Version holds version info from ´git describe´
 var Version struct {
 	Long    string
 	Commits int
@@ -57,13 +57,13 @@ func version() {
 		l = len(vers)
 		Version.Git = vers[l-1]
 		vers = vers[0 : l-1]
-		l = len(vers)
 
 		if len(vers) == 2 {
 			Version.Tags = vers[0]
-			if Version.Commits, err = strconv.Atoi(vers[1]); err != nil {
-				log.Printf("Version : Error: %s", err.Error())
-			}
+			vers = vers[1:]
+		}
+		if Version.Commits, err = strconv.Atoi(vers[0]); err != nil {
+			log.Printf("Version : Error: %s", err.Error())
 		}
 	}
 }
