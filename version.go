@@ -33,9 +33,14 @@ func Tag() string {
 	return Version.Tags
 }
 
-// Git version from Git
+// Git returns the 7 hexadecimal digits version from Git
 func Git() string {
 	return Version.Tags
+}
+
+// ModTime returns the last Git commit time
+func ModTime() time.Time {
+	return Version.ModTime
 }
 
 // Version gets version info from git describe
