@@ -21,6 +21,21 @@ func init() {
 	version()
 }
 
+// Long version from Git
+func Long() string {
+	return Version.Long
+}
+
+// Tag version from Git
+func Tag() string {
+	return Version.Tags
+}
+
+// Git version from Git
+func Git() string {
+	return Version.Tags
+}
+
 // Version gets version info from git describe
 func version() {
 	var err error
