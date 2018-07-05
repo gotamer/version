@@ -61,8 +61,6 @@ func version() {
 		vers = vers[0 : l-1]
 
 		if len(vers) == 2 {
-			Version.Tags = vers[1]
-		} else {
 			Version.Tags = vers[0]
 		}
 	}
