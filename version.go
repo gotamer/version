@@ -2,12 +2,15 @@ package version
 
 import (
 	"bytes"
+	"fmt"
 	"log"
 	"os"
 	"os/exec"
 	"strings"
 	"time"
 )
+
+const gitfile = ".git/COMMIT_EDITMSG"
 
 // Version holds version info from ´git describe´
 var Version struct {
@@ -19,8 +22,11 @@ var Version struct {
 }
 
 func init() {
-	version()
-	modTime()
+	if _, err := os.Stat(gitfile); !os.IsNotExist(err) {
+		version()
+		modTime()
+		write()
+	}
 }
 
 // Long version from Git
@@ -72,9 +78,26 @@ func version() {
 }
 
 func modTime() {
-	fi, err := os.Stat(".git/COMMIT_EDITMSG")
+	fi, err := os.Stat(gitfile)
 	if err != nil {
 		log.Printf("Version : Error: %s", err.Error())
 	}
 	Version.ModTime = fi.ModTime()
+}
+
+func write() {
+	var buf bytes.Buffer
+	buf.WriteString("package main\n")
+	buf.WriteString(fmt.Sprintf("const VerLong = %s\n", Version.Long))
+	buf.WriteString(fmt.Sprintf("const VerTag = %s\n", Version.Tags))
+	buf.WriteString(fmt.Sprintf("const VerGit = %s\n", Version.Git))
+	buf.WriteString(fmt.Sprintf("const VerModTime = %s\n", Version.ModTime))
+
+	//os.Remove("versioninfo.go")
+	f, err := os.Create("versioninfo.go")
+	if err != nil {
+		log.Printf("Version : file : Error: %s", err.Error())
+	}
+	defer f.Close()
+	buf.WriteTo(f)
 }
