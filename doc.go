@@ -8,11 +8,21 @@
 //
 // cat versioninfo.go
 /*
-   package main
-   const VerLong = 0.2-6-ge29c9a3-dirty
+	package main
 
-   const VerTag = 0.2
-   const VerGit = ge29c9a3
-   const VerModTime = 2018-07-06 13:37:03.28865131 +0300 +03
+	VarModTime is a UTC Unix time stamp
+	const VerModTime = 1530896158
+
+	VarLong is the full version from Git command output
+	const VerLong = "0.2-11-g80e8dd8"
+
+	VarDirty means app was build with a git dir that contained modifications which had not been committed.
+	const VerDirty = false
+
+	VarGit is the 7 hexadecimal digits version from Git.
+	const VerGit = "g80e8dd8"
+
+	VarTag is the Tag version from Git.
+	const VerTag = "0.2"
 */
 package version
