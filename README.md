@@ -4,8 +4,9 @@
 [![GoDoc](https://godoc.org/bitbucket.org/gotamer/version?status.svg)](https://godoc.org/bitbucket.org/gotamer/version)
 
 
-# [ALP]
-### Package version gets version information from git
+# In [ALPHA] not complete!
+## Don't use!
 
-This works well for simple applications  
-It just runs ´git describe --always --long --dirty´ and formats that info into the Version struct
+## Package version gets version information from git
+
+It just runs �git describe --always --long --dirty� and formats that info into the Version struct
