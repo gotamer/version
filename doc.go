@@ -1,10 +1,6 @@
 // Package version gets version information from git
 //
-// This works well for simple applications
-// It just runs ´git describe --always --long --dirty´ and formats
-// that info into the Version struct
-// Then it creates a file called versioninfo.go
-//
+// It runs ´git describe --always --long --tags --dirty´ and formats that info a file called versioninfo.go
 //
 // cat versioninfo.go
 /*
