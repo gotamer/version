@@ -3,7 +3,10 @@
 [![Go Report Card](https://goreportcard.com/badge/bitbucket.org/gotamer/version)](https://goreportcard.com/report/bitbucket.org/gotamer/version)
 [![GoDoc](https://godoc.org/bitbucket.org/gotamer/version?status.svg)](https://godoc.org/bitbucket.org/gotamer/version)
 
-# Package version gets version information from git
+# In [ALPHA] not complete!
+# Don't use!
+
+## Package version gets version information from git
 
 This works well for simple applications  
-It just runs Â´git describe --always --long --dirtyÂ´ and formats that info into the Version struct
+It just runs ´git describe --always --long --dirty´ and formats that info into the Version struct
