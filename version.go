@@ -4,23 +4,16 @@ package version
 import (
 	"bytes"
 	"fmt"
-	"log"
 	"os"
 	"os/exec"
 	"strings"
 )
 
-func init() {
-	version()
-}
-
-func Empty() {}
-
-// Version gets version info from git describe
-func version() {
+// Run gets version info from git describe
+func Run() error {
 	fi, err := os.Stat(".git/COMMIT_EDITMSG")
 	if os.IsNotExist(err) {
-		return
+		return err
 	}
 	var buf bytes.Buffer
 	buf.WriteString("package main\n\n")
@@ -37,7 +30,7 @@ func version() {
 	long = strings.Trim(long, "\n ")
 
 	if err != nil {
-		log.Printf("Version : Error: %s", err.Error())
+		return err
 	} else {
 		buf.WriteString("//VarLong is the full version from Git command output\n")
 		buf.WriteString(fmt.Sprintf("const VerLong = \"%s\"\n\n", long))
@@ -62,11 +55,10 @@ func version() {
 		}
 	}
 
-	f, err := os.Create("versioninfo.go")
-	if err != nil {
-		log.Printf("Version : file : Error: %s", err.Error())
+	f, err := os.Create("version.go")
+	if err == nil {
+		buf.WriteTo(f)
+		f.Close()
 	}
-	defer f.Close()
-	buf.WriteTo(f)
-
+	return err
 }
