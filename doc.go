@@ -1,6 +1,5 @@
 // Package version gets version information from git
 //
-
 /*
 	package main
 
@@ -12,7 +11,6 @@
 		}
 	}
 */
-
 // It runs ´git describe --always --long --tags --dirty´ and
 // formats that info in to a file called version_info.go
 //
