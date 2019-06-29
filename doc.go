@@ -1,8 +1,22 @@
 // Package version gets version information from git
 //
-// It runs ´git describe --always --long --tags --dirty´ and formats that info in to a file called versioninfo.go
+
+/*
+	package main
+
+	import "bitbucket.org/gotamer/version"
+
+	func init() {
+		if err := version.Run(); err != nil {
+			// "Handle error"
+		}
+	}
+*/
+
+// It runs ´git describe --always --long --tags --dirty´ and
+// formats that info in to a file called version_info.go
 //
-// cat versioninfo.go
+// cat version_info.go
 /*
 	package main
 

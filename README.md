@@ -20,7 +20,7 @@ func init() {
 }
 ```
 
-### cat version.go
+### cat version_info.go
 ```go
 package main
 

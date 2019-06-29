@@ -1,11 +1,12 @@
 package version
 
 import (
-	"log"
 	"testing"
 )
 
 func TestRunMain(t *testing.T) {
-	log.Printf("Version Long: %v\n", "test")
-
+	err := Run()
+	if err != nil {
+		t.Errorf("Got error: %s", err.Error())
+	}
 }

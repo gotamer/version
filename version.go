@@ -55,7 +55,7 @@ func Run() error {
 		}
 	}
 
-	f, err := os.Create("version.go")
+	f, err := os.Create("version_info.go")
 	if err == nil {
 		buf.WriteTo(f)
 		f.Close()
