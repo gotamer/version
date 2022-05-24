@@ -1,4 +1,4 @@
-// bitbucket.org/gotamer/version
+// github.com/gotamer/version
 package version
 
 import (

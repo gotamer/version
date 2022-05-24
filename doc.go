@@ -1,9 +1,14 @@
-// Package version gets version information from git
-//
+// Package version gets version information from git to go
+//    ______    ______                         _    __               _
+//   / ____/___/_  __/___ _____ ___  ___  ____| |  / /__  __________(_)___  ____
+//  / / __/ __ \/ / / __ `/ __ `__ \/ _ \/ ___/ | / / _ \/ ___/ ___/ / __ \/ __ \
+// / /_/ / /_/ / / / /_/ / / / / / /  __/ /   | |/ /  __/ /  (__  ) / /_/ / / / /
+// \____/\____/_/  \__,_/_/ /_/ /_/\___/_/    |___/\___/_/  /____/_/\____/_/ /_/
+
 /*
 	package main
 
-	import "bitbucket.org/gotamer/version"
+	import "github.com/gotamer/version"
 
 	func init() {
 		if err := version.Run(); err != nil {
