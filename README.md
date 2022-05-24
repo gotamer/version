@@ -1,17 +1,17 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Go v1.9](https://img.shields.io/badge/Go-v1.9-green.svg)](http://golang.org)
-[![Go Report Card](https://goreportcard.com/badge/bitbucket.org/gotamer/version)](https://goreportcard.com/report/bitbucket.org/gotamer/version)
-[![GoDoc](https://godoc.org/bitbucket.org/gotamer/version?status.svg)](https://godoc.org/bitbucket.org/gotamer/version)
+[![Go Report Card](https://goreportcard.com/badge/bitbucket.org/gotamer/version)](https://goreportcard.com/report/github.com/gotamer/version)
+[![GoDoc](https://godoc.org/github.com/gotamer/version?status.svg)](https://godoc.org/github.com/gotamer/version)
 
 
 # Package version gets version information from git
 
-It runs `git describe --always --long --tags --dirty` and formats that info in to a file called version.go
+It runs `git describe --always --long --tags --dirty` and formats that info in to a file called version_info.go (see output below)
 
 ```go
 package main
 
-import "bitbucket.org/gotamer/version"
+import "github.com/gotamer/version"
 
 func init() {
 	if err := version.Run(); err != nil {
@@ -21,6 +21,7 @@ func init() {
 ```
 
 ### cat version_info.go
+
 ```go
 package main
 
