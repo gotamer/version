@@ -4,7 +4,7 @@
 [![GoDoc](https://godoc.org/github.com/gotamer/version?status.svg)](https://godoc.org/github.com/gotamer/version)
 
 
-# Package version gets version information from git
+# Package version gets version information from git to go
 
 ```
  ..|'''.|   ||    .         ..|'''.|          
