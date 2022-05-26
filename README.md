@@ -7,24 +7,29 @@
 # Package version gets version information from git to go
 
 ```
- ..|'''.|   ||    .         ..|'''.|          
-.|'     '  ...  .||.   /\  .|'     '    ...   
-||    ....  ||   ||   (  ) ||    .... .|  '|. 
-'|.    ||   ||   ||     // '|.    ||  ||   || 
- ''|...'|  .||.  '|.'  //   ''|...'|   '|..|' 
-                      /(                      
-                      {___                    
+ ..|'''.|   ||    .         ..|'''.|
+.|'     '  ...  .||.   /\  .|'     '    ...
+||    ....  ||   ||   (  ) ||    .... .|  '|.
+'|.    ||   ||   ||     // '|.    ||  ||   ||
+ ''|...'|  .||.  '|.'  //   ''|...'|   '|..|'
+                      /(
+                      {___
 
-'||'  '|'                         ||                   
- '|.  .'    ....  ... ..   ....  ...    ...   .. ...   
-  ||  |   .|...||  ||' '' ||. '   ||  .|  '|.  ||  ||  
-   |||    ||       ||     . '|..  ||  ||   ||  ||  ||  
-    |      '|...' .||.    |'..|' .||.  '|..|' .||. ||. 
-                                                       
+'||'  '|'                         ||
+ '|.  .'    ....  ... ..   ....  ...    ...   .. ...
+  ||  |   .|...||  ||' '' ||. '   ||  .|  '|.  ||  ||
+   |||    ||       ||     . '|..  ||  ||   ||  ||  ||
+    |      '|...' .||.    |'..|' .||.  '|..|' .||. ||.
+
 FREE THOUGHT · FREE SOFTWARE · FREE WORLD
 ```
 
-It runs `git describe --always --long --tags --dirty` and formats that info in to a file called version_info.go (see output below)
+If you rather not include another package in your app then see varup.
+varup is a cmd you can execute at your apps git root and it will do the same thing.
+
+
+It runs `git describe --always --long --tags --dirty` and formats that info
+in to a file called version.go (see output below)
 
 ```go
 package main
@@ -38,8 +43,7 @@ func init() {
 }
 ```
 
-### cat version_info.go
-
+### $ cat version.go
 ```go
 package main
 
