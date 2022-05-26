@@ -24,13 +24,12 @@
 FREE THOUGHT · FREE SOFTWARE · FREE WORLD
 ```
 
-If you rather not include another package in your app then see [verup](https://github.com/gotamer/version/tree/master/verup).
-[verup](https://github.com/gotamer/version/tree/master/verup) is a cmd you can execute at your apps git root and it will do the same thing.
-
-
 Version runs `git describe --always --long --tags --dirty` and formats that info
 by default to stdout for you to view or pipe, or optionally in to a file (version.go)
 (see sample output below)
+
+If you rather not include another package in your app then see [verup](https://github.com/gotamer/version/tree/master/verup).
+[verup](https://github.com/gotamer/version/tree/master/verup) is a cmd you can execute at your main/cmd apps folder and it will do the same thing.
 
 
 ### $ cat version.go
