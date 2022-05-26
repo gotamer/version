@@ -1,32 +1,22 @@
-// Package version gets version information from git to go
-//    ______    ______                         _    __               _
-//   / ____/___/_  __/___ _____ ___  ___  ____| |  / /__  __________(_)___  ____
-//  / / __/ __ \/ / / __ `/ __ `__ \/ _ \/ ___/ | / / _ \/ ___/ ___/ / __ \/ __ \
-// / /_/ / /_/ / / / /_/ / / / / / /  __/ /   | |/ /  __/ /  (__  ) / /_/ / / / /
-// \____/\____/_/  \__,_/_/ /_/ /_/\___/_/    |___/\___/_/  /____/_/\____/_/ /_/
+// Copyright 2009 The GoTamer. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
 
 /*
-	package main
+Package version gets version information from git to go
 
-	import "github.com/gotamer/version"
+verup executed at the root of git will create a version.go file with up to date
+version information from git.
 
-	func init() {
-		if err := version.Run(); err != nil {
-			// "Handle error"
-		}
-	}
-*/
-// It runs ´git describe --always --long --tags --dirty´ and
-// formats that info in to a file called version_info.go
-//
-// cat version_info.go
-/*
+
+cat version.go
+
 	package main
 
 	//VarModTime is a UTC Unix time stamp
 	const VerModTime = 1530896805
 
-	//VarLong is the full version from Git command output
+	//VarLong is the full version from Git the command output
 	const VerLong = "0.2-14-g1051a2c-dirty"
 
 	//VarDirty means app was build with a git dir that contained modifications which had not been committed.

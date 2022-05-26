@@ -1,4 +1,3 @@
-// github.com/gotamer/version
 package version
 
 import (
@@ -13,6 +12,9 @@ import (
 func Run() error {
 	fi, err := os.Stat(".git/COMMIT_EDITMSG")
 	if os.IsNotExist(err) {
+		// Git is not available
+		// assuming file is being executed not build
+		err = fmt.Errorf("Must be executed in the git root directory")
 		return err
 	}
 	var buf bytes.Buffer
@@ -55,7 +57,7 @@ func Run() error {
 		}
 	}
 
-	f, err := os.Create("version_info.go")
+	f, err := os.Create("version.go")
 	if err == nil {
 		buf.WriteTo(f)
 		f.Close()
