@@ -3,28 +3,73 @@ package version
 import (
 	"bytes"
 	"fmt"
+	"io/fs"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 )
 
-// Run gets version info from git describe
-func Run() error {
-	fi, err := os.Stat(".git/COMMIT_EDITMSG")
-	if os.IsNotExist(err) {
+func Out() error {
+	buf, err := getBuf()
+	if buf.Len() == 0 {
 		// Git is not available
 		// assuming file is being executed not build
-		err = fmt.Errorf("Must be executed in the git root directory")
-		return err
+		return nil
 	}
-	var buf bytes.Buffer
+
+	if err == nil {
+		_, err = os.Stdout.Write(buf.Bytes())
+	}
+	return err
+}
+
+func Save(file string) error {
+	buf, err := getBuf()
+	if buf.Len() == 0 {
+		// Git is not available
+		// assuming file is being executed not build
+		return nil
+	}
+
+	if err == nil {
+		f, err := os.Create(file)
+		if err == nil {
+			buf.WriteTo(f)
+			f.Close()
+		}
+	}
+	return err
+}
+
+func getBuf() (buf bytes.Buffer, err error) {
+
+	cmd := exec.Command("git", "rev-parse", "--show-toplevel")
+	cmd.Stdin = strings.NewReader("pwd")
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err = cmd.Run()
+	if err != nil {
+		// Git is not available
+		// assuming file is being executed not build
+		return buf, nil
+	}
+
+	var pwd = strings.Trim(out.String(), "\n ")
+
+	var fi fs.FileInfo
+	fi, err = os.Stat(filepath.Join(pwd, ".git/COMMIT_EDITMSG"))
+	if os.IsNotExist(err) {
+		return
+	}
+
 	buf.WriteString("package main\n\n")
 	buf.WriteString("//VarModTime is a UTC Unix time stamp\n")
 	buf.WriteString(fmt.Sprintf("const VerModTime = %d\n\n", fi.ModTime().UTC().Unix()))
 
-	cmd := exec.Command("git", "describe", "--always", "--long", "--tags", "--dirty")
+	cmd = exec.Command("git", "describe", "--always", "--long", "--tags", "--dirty")
 	cmd.Stdin = strings.NewReader("Version")
-	var out bytes.Buffer
+	out.Reset()
 	cmd.Stdout = &out
 	err = cmd.Run()
 
@@ -32,7 +77,7 @@ func Run() error {
 	long = strings.Trim(long, "\n ")
 
 	if err != nil {
-		return err
+		return
 	} else {
 		buf.WriteString("//VarLong is the full version from Git command output\n")
 		buf.WriteString(fmt.Sprintf("const VerLong = \"%s\"\n\n", long))
@@ -56,11 +101,5 @@ func Run() error {
 			buf.WriteString(fmt.Sprintf("const VerTag = \"%s\"\n", vers[0]))
 		}
 	}
-
-	f, err := os.Create("version.go")
-	if err == nil {
-		buf.WriteTo(f)
-		f.Close()
-	}
-	return err
+	return
 }

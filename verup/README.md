@@ -1,9 +1,10 @@
 verup
 =====
 
-verup executed at the root of git will create a version.go file with up to date
+verup will create a file (version.go) with up to date
 version information from git.
-
+By default verup will output to stdout to view or pipe.
+Please check the flags.
 
 cat version.go
 

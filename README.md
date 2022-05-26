@@ -29,19 +29,9 @@ If you rather not include another package in your app then see [verup](https://g
 
 
 Version runs `git describe --always --long --tags --dirty` and formats that info
-in to a file called version.go (see output below)
+by default to stdout for you to view or pipe, or optionally in to a file (version.go)
+(see sample output below)
 
-```go
-package main
-
-import "github.com/gotamer/version"
-
-func init() {
-	if err := version.Run(); err != nil {
-		// "Handle error"
-	}
-}
-```
 
 ### $ cat version.go
 ```go

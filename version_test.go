@@ -5,7 +5,7 @@ import (
 )
 
 func TestRunMain(t *testing.T) {
-	err := Run()
+	err := Out()
 	if err != nil {
 		t.Errorf("Got error: %s", err.Error())
 	}
