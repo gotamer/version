@@ -24,11 +24,11 @@
 FREE THOUGHT · FREE SOFTWARE · FREE WORLD
 ```
 
-If you rather not include another package in your app then see varup.
-varup is a cmd you can execute at your apps git root and it will do the same thing.
+If you rather not include another package in your app then see [verup](https://github.com/gotamer/version/tree/master/verup).
+[verup](https://github.com/gotamer/version/tree/master/verup) is a cmd you can execute at your apps git root and it will do the same thing.
 
 
-It runs `git describe --always --long --tags --dirty` and formats that info
+Version runs `git describe --always --long --tags --dirty` and formats that info
 in to a file called version.go (see output below)
 
 ```go
