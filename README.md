@@ -52,3 +52,6 @@ const VerGit = "g1051a2c"
 const VerTag = "0.2"
 
 ```
+
+### Alternative:
+https://belief-driven-design.com/build-time-variables-in-go-51439b26ef9
